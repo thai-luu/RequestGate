@@ -16,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/register', function () {
-    return view('frontend.register');
-});
+Route::get('register', 'UserController@showRegisterForm');
+Route::post('register', 'UserController@storeUser');
