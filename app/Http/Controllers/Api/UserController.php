@@ -1,16 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
-        // return Category::all();
+        return User::all();
     }
 
     /**
@@ -22,7 +28,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        return Category::create($request->all());
+        return User::create($request->all());
     }
 
     /**
@@ -31,9 +37,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
+        return $user;
     }
 
     /**
@@ -43,9 +50,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
+        $user->update($request->all());
+        return $user;
     }
 
     /**
@@ -54,8 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
+        $user->delete();
     }
 }

@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 Route::get('register', 'UserController@showRegisterForm');
 Route::post('register', 'UserController@storeUser');
+

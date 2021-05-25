@@ -1,16 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class DepartmentController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
-        // return Category::all();
+        return Department::all();
     }
 
     /**
@@ -22,7 +27,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        return Category::create($request->all());
+        return Department::create($request->all());
     }
 
     /**
@@ -31,9 +36,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Department $department)
     {
         //
+        return $department;
     }
 
     /**
@@ -43,9 +49,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Department $department)
     {
         //
+        $department->update($request->all());
+        return $department;
     }
 
     /**
@@ -54,8 +62,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Department $department)
     {
         //
+        $department->delete();
     }
 }
