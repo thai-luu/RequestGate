@@ -11,4 +11,7 @@ class Department extends Model
     {
     	return $this->hasMany('App\User');
     }
+    protected $fillable = [
+        'name', 'id',
+    ];
 }

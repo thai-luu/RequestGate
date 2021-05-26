@@ -11,4 +11,7 @@ class Category extends Model
     {
     	return $this->hasMany('App\Request');
     }
+    protected $fillable = [
+        'name', 'id', 'status',
+    ];
 }
