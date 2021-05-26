@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Requests;
+use DB;
 class RequestController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class RequestController extends Controller
     public function store(Request $request)
     {
         //
-        return Request::create($request->all());
+        return Requests::create($request->all());
     }
 
     /**
@@ -39,7 +40,10 @@ class RequestController extends Controller
     public function show(Requests $request)
     {
         //
-        return $request;
+        $users = DB::table('users')->where('id', '=', $request->toID)->get();
+        $x = array($request,$users);
+        return $x;
+        
     }
 
     /**
@@ -52,8 +56,10 @@ class RequestController extends Controller
     public function update(Request $request, Requests $requests)
     {
         //
-        $requests->update($request->all());
-        return $requests;
+        $r= $requests::find(1);
+        $r->update($request->all());
+        // dd($requests);
+        return $r;
     }
 
     /**
