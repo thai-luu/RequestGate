@@ -23,4 +23,5 @@ Route::apiResource('category','api\CategoryController');
 Route::apiResource('department','api\DepartmentController');
 Route::get('user/request/count/{user}','api\TruongBoPhanController@countOfFromRequest');
 Route::get('user/sendRequest/count/{user}','api\UserController@countOfSendRequest');
+Route::get('request/infoUser/{request}','api\RequestController@showInfo');
 

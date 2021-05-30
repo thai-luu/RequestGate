@@ -37,14 +37,19 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Requests $request)
+    public function show(Requests $request){ //Lay ra thong tin cua 1 request
+        return $request;
+    }
+    public function showInfo(Requests $request)
     {
-        //
+        //lay ra thong tin user ma request gui den 
         $users = DB::table('users')->where('id', '=', $request->toID)->get();
-        $x = array($request,$users);
-        return $x;
+        $userss = DB::table('users')->where('id', '=', $request->fromID)->get();
+        $a=array($userss,$users);
+        return $a;
         
     }
+    
 
     /**
      * Update the specified resource in storage.
