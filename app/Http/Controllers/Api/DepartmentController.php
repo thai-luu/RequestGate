@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Department;
+use DB;
 class DepartmentController extends Controller
 {
     /**
@@ -64,7 +65,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        //xoa user
         $department->delete();
     }
 }
