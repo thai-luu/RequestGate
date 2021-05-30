@@ -4,9 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
-use DB;
-class UserController extends Controller
+
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,6 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::all();
     }
 
     /**
@@ -28,7 +26,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        return User::create($request->all());
     }
 
     /**
@@ -37,10 +34,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
-        return $user;
     }
 
     /**
@@ -50,11 +46,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
-        $user->update($request->all());
-        return $user;
     }
 
     /**
@@ -63,17 +57,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
-        $user->delete();
-    }
-    
-    public function countOfSendRequest(User $user)
-    {
-        $count = DB::table('requests')
-         ->where('fromID','=',$user->id)
-         ->count();
-         return $count;
     }
 }
