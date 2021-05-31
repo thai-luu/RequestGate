@@ -11,7 +11,10 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
+
+    protected $addHttpCookie = true;
+
     protected $except = [
-        //
+        'http://localhost:8080/RequestGate/public/*',
     ];
 }

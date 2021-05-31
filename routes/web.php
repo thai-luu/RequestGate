@@ -16,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('register', 'UserController@showRegisterForm');
-Route::post('register', 'UserController@storeUser');
 
+
+Route::group(['middleware'=>'login'], function()
+{
+    Route::get('logout', 'UserController@logout');
+});
+
+
+Route::group(['middleware'=>'logout'], function()
+{    
+    Route::get('register', 'UserController@showRegisterForm');
+    Route::post('register', 'UserController@storeUser');
+
+    Route::get('login', 'UserController@showLoginForm');
+    Route::post('login', 'UserController@login');
+});
+
+Route::get('showToken', 'UserController@showToken');
