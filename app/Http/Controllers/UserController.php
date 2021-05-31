@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use DB;
+use Auth;
 
 class UserController extends Controller
 {
@@ -35,14 +36,34 @@ class UserController extends Controller
           // Lưu thông tin vào database, phần này sẽ giới thiệu ở bài về database
           $name = $request->input('name');
           $email = $request->input('email');
-          $password = $request->input('password');
+          $password = bcrypt($request->input('password'));
           // $website = $request->input('website');
          
           DB::insert('insert into users (name, email, password) values (?, ?, ?)', [$name, $email, $password]);
           return redirect('register')
-              ->with('message', 'Dang ki thanh cong');
-         
+              ->with('message', 'Dang ki thanh cong');   
+      }
     }
-  }
+
+    public function showToken() {
+      echo csrf_token();
+
+    }
+
+    public function login(Request $request){
+      $email = $request['email'];
+      $password = $request['password'];
+
+      if (Auth::attempt(['email'=>$email, 'password' => $password]))
+        return 'success';
+      else
+        return 'failed';
+    }
+
+
+    public function logout(){
+      Auth::logout();
+      return 'logout';
+    }
 
 }
