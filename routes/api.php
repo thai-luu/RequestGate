@@ -19,12 +19,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::apiResource('user','api\UserController');
     Route::get('logout', 'AuthController@logout');
     Route::post('changePassword', 'AuthController@changePassword');
+    Route::apiResource('request','api\RequestController');
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::apiResource('request','api\RequestController');
 Route::apiResource('category','api\CategoryController');
 Route::apiResource('department','api\DepartmentController');
 Route::get('user/request/count/{user}','api\TruongBoPhanController@countOfFromRequest');
