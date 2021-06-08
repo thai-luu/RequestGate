@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Requests;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 class RequestController extends Controller
 {
     /**
@@ -15,8 +17,14 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
-        return Requests::all();
+        $user = Auth::user();
+        if ($user->role == 0){
+            return Requests::where('fromID', $user->id)->get();
+        } else if ($user->role ==1){
+            return Requests::where('toID', $user->id)->get();
+        } else {
+            return Requests::all();
+        }
     }
 
     /**
@@ -46,7 +54,7 @@ class RequestController extends Controller
         $users = DB::table('users')->where('id', '=', $request->toID)->get();
         $userss = DB::table('users')->where('id', '=', $request->fromID)->get();
         $a=array($userss,$users);
-        return $a;
+        return response()->json($a);
         
     }
     
@@ -73,10 +81,18 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requests $requests)
+    public function destroy(Requests $request)
     {
-        //
-        $requests->delete();
-
+        // status = 1 la HCNS da tiep nhan, 0 la chua tiep nhan
+        if ($request->status == 1){
+            $request->delete();
+            return response()->json([
+                'result' => 'success',
+            ]);
+        } else {
+        return response()->json([
+            'result' => 'failed',
+        ]);
+        }
     }
 }
