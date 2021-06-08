@@ -14,12 +14,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            ['role' => 1, 'name' => 'Thai', 'email' => 'thai@gmail.com', 'password' => bcrypt('123456')],
-            ['role' => 2, 'name' => 'Trung', 'email' => 'trung@gmail.com', 'password' => bcrypt('123456')],
-            ['role' => 2, 'name' => 'Quang', 'email' => 'Quang@gmail.com', 'password' => bcrypt('123456')],
-            ['role' => 2, 'name' => 'Linh', 'email' => 'Linh@gmail.com', 'password' => bcrypt('123456')],
-            ['role' => 1, 'name' => 'Tan', 'email' => 'Tan@gmail.com', 'password' => bcrypt('123456')],
-            ['role' => 0, 'name' => 'admin', 'email' => 'admin@gmail.com', 'password' => bcrypt('123456')],
+            ['role' => 1, 'name' => 'Thai', 'email' => 'thai@gmail.com', 'password' => bcrypt('123456'),'department_id' => 2],
+            ['role' => 2, 'name' => 'Trung', 'email' => 'trung@gmail.com', 'password' => bcrypt('123456'),'department_id' => 2],
+            ['role' => 2, 'name' => 'Quang', 'email' => 'Quang@gmail.com', 'password' => bcrypt('123456'),'department_id' => 3],
+            ['role' => 2, 'name' => 'Linh', 'email' => 'Linh@gmail.com', 'password' => bcrypt('123456'),'department_id' => 3],
+            ['role' => 1, 'name' => 'Tan', 'email' => 'Tan@gmail.com', 'password' => bcrypt('123456'),'department_id' => 1],
+            ['role' => 0, 'name' => 'admin', 'email' => 'admin@gmail.com', 'password' => bcrypt('123456'),'department_id' => 4]
         ]);
     }
 }
