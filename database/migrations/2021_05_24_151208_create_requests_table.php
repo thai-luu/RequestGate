@@ -18,17 +18,22 @@ class CreateRequestsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('mo_ta');
-            $table->integer('id_the_loai');
+            $table->unsignedBigInteger('id_the_loai')->nullable();
             $table->date('due_date');
             $table->string('comment');
-            $table->integer('toID');
+            $table->unsignedBigInteger('toID')->nullable();
             $table->integer('do_uu_tien');
             $table->integer('status');
-            $table->integer('fromID');
+            $table->unsignedBigInteger('fromID')->nullable();
             
             
             
 
+        });
+        Schema::table('requests', function($table) {
+            $table->foreign('id_the_loai')->references('id')->on('category');
+            $table->foreign('toID')->references('id')->on('users');
+            $table->foreign('fromID')->references('id')->on('users');
         });
     }
 

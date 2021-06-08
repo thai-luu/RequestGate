@@ -18,6 +18,9 @@ class CreateDepartmentTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        Schema::table('users', function($table) {
+            $table->foreign('department_id')->references('id')->on('department');
+        });
     }
 
     /**
