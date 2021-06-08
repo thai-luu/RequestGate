@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 use DB;
 class UserController extends Controller
 {

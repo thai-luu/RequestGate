@@ -25,3 +25,4 @@ Route::get('user/request/count/{user}','api\TruongBoPhanController@countOfFromRe
 Route::get('user/sendRequest/count/{user}','api\UserController@countOfSendRequest');
 Route::get('request/infoUser/{request}','api\RequestController@showInfo');
 
+
