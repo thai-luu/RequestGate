@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Category;
+use App\User;
 use App\Requests;
 use DB;
 class RequestController extends Controller
@@ -16,7 +18,20 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return Requests::all();
+        $requests = DB::table('requests')
+        ->join('category', 'requests.id_the_loai', '=', 'category.id')
+        ->select('requests.id', 'requests.due_date','requests.title','requests.mo_ta','requests.toID','requests.fromID','category.name as categoryName')
+        ->get();
+        $rs= array();
+        foreach($requests as $request){
+        $name1 = DB::table('users')->where('id','=',$request->toID)->get('name');
+        $name2 = DB::table('users')->where('id','=',$request->fromID)->get('name');
+        $r = array($request,$name1,$name2);
+        array_push($rs,$r);
+        
+        }
+        return $rs;
+        
     }
 
     /**

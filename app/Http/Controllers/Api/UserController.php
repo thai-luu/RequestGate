@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Department;
 use Auth;
 use DB;
 class UserController extends Controller
@@ -17,7 +18,11 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::all();
+        $users = DB::table('users')
+            ->join('department', 'users.department_id', '=', 'department.id')
+            ->select('users.name as userName', 'users.email','users.role','users.id','department.name')
+            ->get();
+            return $users;
     }
 
     /**
